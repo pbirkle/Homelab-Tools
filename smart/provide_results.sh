@@ -7,14 +7,14 @@ function check_prerequisites() {
   fi
 
   if [[ -z ${MAIL_RECIPIENT} ]]; then
-    echo "no email provided"
+    echo "no recipient provided"
     exit 1
   fi
 }
 
 function provide_result() {
   TEST_STATUS=$(/usr/sbin/smartctl -a "${DEVICE}" | grep 'test result' | awk '{print $6}')
-  /usr/sbin/smartctl -a "${DEVICE}" | mail -s "SMART '/dev/sda' ${TEST_STATUS}" "${MAIL_RECIPIENT}"
+  /usr/sbin/smartctl -a "${DEVICE}" | mail -s "SMART '${DEVICE}' ${TEST_STATUS}" "${MAIL_RECIPIENT}"
 }
 
 while getopts d:r: opt
