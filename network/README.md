@@ -33,7 +33,7 @@ ssh-keygen -y -f ~/.ssh/id_rsa
 nano ~/.ssh/authorized_keys
 
 # edit sshd config on remote server and add/edit following configurations
-nano nano /etc/ssh/sshd_config
+nano /etc/ssh/sshd_config
 ---
 PubkeyAuthentication yes
 PasswordAuthentication no
