@@ -1,11 +1,18 @@
 # Storage
+1. [Backup & Restore](#backup--restore)
+   1. [Restic](#restic)
+      1. [Prerequisites](#prerequisites) 
+      2. [Backup](#backup)
+      3. [Restore](#restore)
+
 
 ## Backup & Restore
 
-### restic
-create backups and restore if necessary using [restic](https://restic.net/)
+### Restic
+Backups can be created and restored using [restic](https://restic.net/)
 
-Create new file which contains repository password and limit access for user only
+#### Prerequisites
+Create new file which contains repository password and limit access for specific user only
 ```
 echo "YOUR_PASSWORD" > ~/.restic_pw
 chmod 600 ~/.restic_pw
