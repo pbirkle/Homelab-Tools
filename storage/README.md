@@ -4,6 +4,7 @@
       1. [Prerequisites](#prerequisites) 
       2. [Backup](#backup)
       3. [Restore](#restore)
+      4. [REST-Server](#rest-server)
 
 
 ## Backup & Restore
@@ -56,3 +57,6 @@ With following command you can create a backup for multiple directories:
 
 #### Restore
 TBD
+
+#### REST-Server
+Restic offers an [REST-Server](https://github.com/restic/rest-server) to back up your data to a remote server. As restic has performance issues while backing up files through a network share (e.g. samba) this REST-Server can be used to provide a fast remote backup destination.  
