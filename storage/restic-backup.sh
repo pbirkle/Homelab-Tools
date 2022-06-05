@@ -47,6 +47,11 @@ function print_log() {
 }
 
 function check() {
+  if ! [[ ${RESTIC_KEEP_HOURLY} =~ ^[0-9]+$ ]] ; then
+    print_error "keep hourly must be a number" "y"
+    exit 1
+  fi
+
   if ! [[ ${RESTIC_KEEP_DAILY} =~ ^[0-9]+$ ]] ; then
     print_error "keep daily must be a number" "y"
     exit 1
