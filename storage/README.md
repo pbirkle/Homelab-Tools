@@ -31,7 +31,7 @@ Use `restic-backup.sh` with following parameters to execute a backup. Some of th
 | `-r [value]` | `yes`     |         | path to restic repository                                           |
 | `-s [value]` | `yes`     |         | path to source directory or source file, can be used multiple times |
 
-**Example:**
+*Example:*
 
 With following command you can create a backup for multiple directories:
 
@@ -57,7 +57,7 @@ Use `restic-restore.sh` with following parameters to restore a backup. Some of t
 
 After execution of script all available backups will be listed and a proper one must be chosen to start restore process.
 
-**Example:**
+*Example:*
 
 With following command you can list available backups and restore specific one:
 
