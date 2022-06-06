@@ -1,5 +1,6 @@
 # Homelab-Tools
 
-1. [Monitoring](monitoring/README.md)
-2. [Network](network/README.md)
-3. [Storage](storage/README.md)
+1. [Game Servers](game-servers)
+2. [Monitoring](monitoring)
+3. [Network](network)
+4. [Storage](storage)
