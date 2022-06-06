@@ -1,13 +1,27 @@
 #!/bin/bash
 
+function help() {
+  echo ""
+  echo "-d  --directory     specify minecraft server directory"
+  echo "-h  --help          show help"
+  echo "-m  --mode          specify mode to be used [start|stop|update|backup]"
+  echo "                    start:    start minecraft server"
+  echo "                    stop:     stop minecraft server"
+  echo "                    update:   stop server, update server file and start server again"
+  echo "                    backup:   backup minecraft server into tar.gz file"
+  echo "-i  --memory-min    specify min memory usage for minecraft server (default: 1024M)"
+  echo "-a  --memory-max    specify max memory usage for minecraft server (default: 2048M)"
+  echo "-v  --version       specify minecraft version (default: 1.18.2)"
+  echo "-w  --world         specify name of world"
+}
 function check_prerequisites() {
   if [[ -z "${MODE}" ]]; then
-    echo "mode was not provided (-m flag)"
+    echo "mode was not provided (-m flag), see help (-h or --help) for more information"
     exit 1
   fi
 
   if [[ -z "${MINECRAFT_SERVER_DIR}" ]]; then
-    echo "minecraft server directory was not provided (-d flag)"
+    echo "minecraft server directory was not provided (-d flag), see help (-h or --help) for more information"
     exit 1
   fi
 
@@ -89,21 +103,6 @@ function stop_server() {
   done
   echo "minecraft server successfully stopped"
 }
-
-# /home/mc/minecraft <- MINECRAFT_SERVER_DIR
-# |- versions
-# |  |- server_1.18.0.jar
-# |  |- server_1.18.1.jar
-# |  |- server_1.18.2.jar
-# |
-# |- worlds
-# |  |- test-1
-# |  |  |- server.jar <- symlink to ../versions/server_xyz.jar
-# |  |
-# |  |- test-2
-# |- backups
-# |  |- test-1
-# |  |  |- 2022-06-06_10-08.tar.gz
 
 while [[ "$#" -gt 0 ]]; do
   case $1 in
