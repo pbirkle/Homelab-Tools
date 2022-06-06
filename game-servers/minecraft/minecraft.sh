@@ -42,25 +42,25 @@ function download_server_version() {
 function update_server_version() {
   cd "${MINECRAFT_SERVER_DIR}/worlds/${MINECRAFT_WORLD}" || exit 1
 
-  if ! [[ -f "../versions/${MINECRAFT_SERVER_FILENAME}" ]]; then
+  if ! [[ -f "../../versions/${MINECRAFT_SERVER_FILENAME}" ]]; then
     echo "minecraft server file for version ${MINECRAFT_VERSION} cannot be found."
     exit 1
   fi
 
   rm server.jar
-  ln -s "../versions/${MINECRAFT_SERVER_FILENAME}" server.jar
+  ln -s "../../versions/${MINECRAFT_SERVER_FILENAME}" server.jar
 }
 
 function start_server() {
   cd "${MINECRAFT_SERVER_DIR}/worlds/${MINECRAFT_WORLD}" || exit 1
 
   if ! [[ -h server.jar ]]; then
-    if ! [[ -f "../versions/${MINECRAFT_SERVER_FILENAME}" ]]; then
+    if ! [[ -f "../../versions/${MINECRAFT_SERVER_FILENAME}" ]]; then
       echo "minecraft server file for version ${MINECRAFT_VERSION} cannot be found."
       exit 1
     fi
 
-    ln -s "../versions/${MINECRAFT_SERVER_FILENAME}" server.jar
+    ln -s "../../versions/${MINECRAFT_SERVER_FILENAME}" server.jar
   fi
 
   if ! [[ -f eula.txt ]] || [[ $(grep -c -i 'eula=true' < eula.txt) -eq 0 ]]; then
@@ -105,17 +105,17 @@ function stop_server() {
 # |  |  |- 2022-06-06_10-08.tar.gz
 
 while [[ "$#" -gt 0 ]]; do
-    case $1 in
-        -d|--directory) MINECRAFT_SERVER_DIR=${2}; shift ;;
-        -h|--help) help && exit 0 ;;
-        -m|--mode) MODE=${2}; shift ;;
-        -i|--memory-min) MINECRAFT_MEMORY_MIN=${2}; shift ;;
-        -a|--memory-max) MINECRAFT_MEMORY_MAX=${2}; shift ;;
-        -v|--version) MINECRAFT_VERSION=${2}; shift ;;
-        -w|--world) MINECRAFT_WORLD=${2}; shift ;;
-        *) echo "argument not found" && exit 1;;
-    esac
-    shift
+  case $1 in
+    -d|--directory) MINECRAFT_SERVER_DIR=${2}; shift ;;
+    -h|--help) help && exit 0 ;;
+    -m|--mode) MODE=${2}; shift ;;
+    -i|--memory-min) MINECRAFT_MEMORY_MIN=${2}; shift ;;
+    -a|--memory-max) MINECRAFT_MEMORY_MAX=${2}; shift ;;
+    -v|--version) MINECRAFT_VERSION=${2}; shift ;;
+    -w|--world) MINECRAFT_WORLD=${2}; shift ;;
+    *) echo "argument not found" && exit 1;;
+  esac
+  shift
 done
 
 check_prerequisites
