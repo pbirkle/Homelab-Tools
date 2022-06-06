@@ -69,7 +69,8 @@ function start_server() {
 
   readonly MINECRAFT_CMD="java -Xms${MINECRAFT_MEMORY_MIN:-1024M} -Xmx${MINECRAFT_MEMORY_MAX:-2048M} -jar server.jar nogui"
 
-  screen -S "${MINECRAFT_WORLD}" ${MINECRAFT_CMD}
+  screen -S "${MINECRAFT_WORLD}" -d -m ${MINECRAFT_CMD}
+  sleep 1s
 
   until grep -q 'Done (' < logs/latest.log; do
     echo "waiting for server to be ready..."
