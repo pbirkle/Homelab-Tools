@@ -22,7 +22,7 @@ Use `minecraft.sh` to maintain your minecraft server (vanilla):
 | `-v` | `--version`    |          | specify minecraft version (default: `1.18.2`)                    | `1.18.2`      |
 | `-w` | `--world`      |          | specify name of world                                            | `my-world`    |
 
-*Directory structure*
+*Directory structure:*
 ```
 ~/minecraft # this represents your minecraft server directory 
    |-- versions  # all server versions will be saved here
