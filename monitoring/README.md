@@ -1,8 +1,12 @@
 # Monitoring
 
-1. [Drives (HDD / SSD)](#drives-hdd--ssd)
+1. [Configure Mail](#configure-mail)
+2. [Drives (HDD / SSD)](#drives-hdd--ssd)
    1. [S.M.A.R.T](#smart)
    2. [Temperature](#temperature)
+
+## Configure Mail
+for mor information see [here](https://decatec.de/linux/linux-einfach-e-mails-versenden-mit-msmtp/)
 
 ## Drives (HDD / SSD)
 ### S.M.A.R.T
