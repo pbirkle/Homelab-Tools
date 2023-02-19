@@ -62,7 +62,7 @@ hddtemp /dev/sda --numeric
 ```
 
 ## Prometheus / Grafana
-
+Easiest way to use Prometheus and Grafana is by using [docker-compose](./prometheus-grafana/docker-compose.yml) file
 
 ## Prometheus Exporters
 
