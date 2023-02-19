@@ -90,11 +90,57 @@ sudo cp node_exporter-1.5.0.linux-amd64/node_exporter /usr/bin
 sudo nano /etc/systemd/system/node_exporter.service
 ```
 
-add content from [node_exporter.service](./prometheus-exporters/node_exporter/node_exporter.service)
+add content from [node_exporter.service](./prometheus-exporters/node-exporter/node_exporter.service)
 
 5. activate and start service
 ```sh
 sudo systemctl daemon-reload
 sudo systemctl enable node_exporter
 sudo systemctl start node_exporter
+```
+
+### Pi-Hole Exporter (Service)
+see [Pi-Hole Prometheus Exporter](https://github.com/eko/pihole-exporter) GitHub page for further information
+
+1. create new user
+```sh
+sudo useradd pihole_exporter -s /sbin/nologin
+```
+
+2. download pihole_exporter
+
+check for newest version on [pihole-exporter](https://github.com/eko/pihole-exporter/releases) GitHub page
+```sh
+wget https://github.com/eko/pihole-exporter/releases/download/v0.3.0/pihole_exporter-linux-amd64
+```
+
+3. make pihole_exporter executable and move
+```sh
+chmod +x pihole_exporter-linux-amd64 
+sudo cp pihole_exporter-linux-amd64 /usr/bin/pihole_exporter
+```
+4. create new service
+```sh
+sudo nano /etc/systemd/system/pihole_exporter.service
+```
+
+add content from [pihole_exporter.service](./prometheus-exporters/pihole/pihole_exporter.service)
+
+5. create start script
+```sh
+sudo nano /etc/pihole/pihole-exporter.sh
+```
+
+add content from [pihole_exporter.service](./prometheus-exporters/pihole/pihole-exporter.sh)
+
+make script executable
+```sh
+sudo chmod +x /etc/pihole/pihole-exporter.sh
+```
+
+6. activate and start service
+```sh
+sudo systemctl daemon-reload
+sudo systemctl enable pihole_exporter
+sudo systemctl start pihole_exporter
 ```

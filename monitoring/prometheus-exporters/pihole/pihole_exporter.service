@@ -1,0 +1,9 @@
+[Unit]
+Description=PiHole Exporter
+
+[Service]
+User=pihole_exporter
+ExecStart=/etc/pihole/pihole-exporter.sh
+
+[Install]
+WantedBy=multi-user.target
