@@ -10,7 +10,9 @@
    2. [Pi-Hole Exporter](#pi-hole-exporter-service)
 
 ## Configure Mail
-for mor information see [here](https://decatec.de/linux/linux-einfach-e-mails-versenden-mit-msmtp/)
+for more information see [here](https://decatec.de/linux/linux-einfach-e-mails-versenden-mit-msmtp/)
+
+for more information about sending proxmox notifications see [here](https://howtodotech.de/proxmox-smtp-postfix-authentifizierung-einrichten/)
 
 ## Drives (HDD / SSD)
 ### S.M.A.R.T
