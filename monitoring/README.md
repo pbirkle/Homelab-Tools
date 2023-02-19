@@ -7,6 +7,7 @@
 3. [Prometheus / Grafana](#prometheus--grafana)
 4. [Prometheus Exporters](#prometheus-exporters)
    1. [Node Exporter](#node-exporter)
+   2. [Pi-Hole Exporter](#pi-hole-exporter-service)
 
 ## Configure Mail
 for mor information see [here](https://decatec.de/linux/linux-einfach-e-mails-versenden-mit-msmtp/)
