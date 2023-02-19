@@ -4,6 +4,9 @@
 2. [Drives (HDD / SSD)](#drives-hdd--ssd)
    1. [S.M.A.R.T](#smart)
    2. [Temperature](#temperature)
+3. [Prometheus / Grafana](#prometheus--grafana)
+4. [Prometheus Exporters](#prometheus-exporters)
+   1. [Node Exporter](#node-exporter)
 
 ## Configure Mail
 for mor information see [here](https://decatec.de/linux/linux-einfach-e-mails-versenden-mit-msmtp/)
@@ -56,4 +59,42 @@ hddtemp /dev/sd[a-d]
 
 # show temp for device as numeric
 hddtemp /dev/sda --numeric
+```
+
+## Prometheus / Grafana
+
+
+## Prometheus Exporters
+
+### Node Exporter (Service)
+
+1. create new user
+```sh
+sudo useradd node_exporter -s /sbin/nologin
+```
+
+2. download node_exporter
+
+check for newest version on [prometheus website](https://prometheus.io/download/#node_exporter)
+```sh
+wget https://github.com/prometheus/node_exporter/releases/download/v1.5.0/node_exporter-1.5.0.linux-amd64.tar.gz
+```
+
+3. extract and move node_exporter
+```sh
+tar xvfz node_exporter-1.5.0.linux-amd64.tar.gz
+sudo cp node_exporter-1.5.0.linux-amd64/node_exporter /usr/bin
+```
+4. create new service
+```sh
+sudo nano /etc/systemd/system/node_exporter.service
+```
+
+add content from [node_exporter.service](./prometheus-exporters/node_exporter/node_exporter.service)
+
+5. activate and start service
+```sh
+sudo systemctl daemon-reload
+sudo systemctl enable node_exporter
+sudo systemctl start node_exporter
 ```
