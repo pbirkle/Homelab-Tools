@@ -2,7 +2,7 @@
 Description=Node Exporter
 
 [Service]
-User=prometheus
+User=node_exporter
 ExecStart=/usr/bin/node_exporter
 
 [Install]
