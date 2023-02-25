@@ -6,6 +6,7 @@ function usage() {
     echo "-h   --help        |           | show help"
     echo "-l   --login-token |           | login token for authorization"
     echo "-m   --message     |     x     | message to display"
+    echo "-M   --mail        |           | mail address to send the notification to"
     echo "-p   --priority    |           | priority of the notification"
     echo "-t   --title       |           | title of the notification"
     echo "-T   --tags        |           | tags of the notification"
@@ -45,6 +46,10 @@ function publish_notification() {
         HEADERS+=(-H "Authorization: Bearer ${NTFY_TOKEN}")
     fi
 
+    if [[ -n "${NTFY_MAIL}" ]]; then
+        HEADERS+=(-H "X-Email: ${NTFY_MAIL}")
+    fi
+
     if [[ -n "${NTFY_PRIORITY}" ]]; then
         HEADERS+=(-H "X-Priority: ${NTFY_PRIORITY}")
     fi
@@ -60,6 +65,7 @@ function publish_notification() {
     curl -s -S "${HEADERS[@]}" -d "${NTFY_MESSAGE}" "${NTFY_URL}" > /dev/null
 }
 
+NTFY_MAIL=
 NTFY_MESSAGE=
 NTFY_PRIORITY=
 NTFY_TAGS=
@@ -96,6 +102,18 @@ while [[ $# -gt 0 ]] ; do
         ;;
     -m= | --message=)
         die "ERROR: -m and --message require a non-empty option argument"
+        ;;
+
+    -M | --mail)
+        if [[ -z ${2} ]]; then die "ERROR: -M and --mail require a non-empty option argument"; fi
+        NTFY_MAIL=${2}
+        shift
+        ;;
+    -M=?* | --mail=?*)
+        NTFY_MAIL=${1#*=}
+        ;;
+    -M= | --mail=)
+        die "ERROR: -M and --mail require a non-empty option argument"
         ;;
 
     -p | --priority)

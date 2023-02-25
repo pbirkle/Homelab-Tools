@@ -13,11 +13,12 @@ use [ntfy.sh](./ntfy.sh) to send notifications:
 # -h   --help        |           | show help
 # -l   --login-token |           | login token for authorization
 # -m   --message     |     x     | message to display
+# -M   --mail        |           | mail address to send the notification to
 # -p   --priority    |           | priority of the notification
 # -t   --title       |           | title of the notification
 # -T   --tags        |           | tags of the notification
 # -u   --url         |     x     | url of the ntfy instance including the topic
 
 # e.g.
-./ntfy.sh -l "[SECRET_TOKEN]" -m "message" -p "3" -t "title" -T "beer,dog,cat" -u "https://ntfy.sh/MY_TOPIC"
+./ntfy.sh -l "[SECRET_TOKEN]" -m "message" -M "mail@example.tld" -p "3" -t "title" -T "beer,dog,cat" -u "https://ntfy.sh/MY_TOPIC"
 ```
