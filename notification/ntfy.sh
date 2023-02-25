@@ -1,6 +1,6 @@
 #!/bin/bash
 
-usage() {
+function usage() {
     echo "ARGUMENTS          | MANDATORY | DECRIPTION"
     echo "------------------------------------------------------------------------------"
     echo "-h   --help        |           | show help"
@@ -13,7 +13,7 @@ usage() {
 }
 
 function die() {
-    printf '%s\n' "$1" >&2
+    printf '%s\n' "${1}" >&2
     exit 1
 }
 
@@ -23,14 +23,14 @@ function checks() {
         exit 1
     fi
 
-    if [ -z "${NTFY_URL}" ]; then
+    if [[ -z "${NTFY_URL}" ]]; then
         echo "ntfy url (including topic) not provided [e.g. https://ntfy.sh/YOUR_TOPIC]"
         echo ""
         usage
         exit 1
     fi
 
-    if [ -z "${NTFY_MESSAGE}" ]; then
+    if [[ -z "${NTFY_MESSAGE}" ]]; then
         echo "message not provided"
         echo ""
         usage
@@ -41,19 +41,19 @@ function checks() {
 function publish_notification() {
     HEADERS=()
 
-    if [ -n "${NTFY_TOKEN}" ]; then
+    if [[ -n "${NTFY_TOKEN}" ]]; then
         HEADERS+=(-H "Authorization: Bearer ${NTFY_TOKEN}")
     fi
 
-    if [ -n "${NTFY_PRIORITY}" ]; then
+    if [[ -n "${NTFY_PRIORITY}" ]]; then
         HEADERS+=(-H "X-Priority: ${NTFY_PRIORITY}")
     fi
 
-    if [ -n "${NTFY_TITLE}" ]; then
+    if [[ -n "${NTFY_TITLE}" ]]; then
         HEADERS+=(-H "X-Title: ${NTFY_TITLE}")
     fi
 
-    if [ -n "${NTFY_TAGS}" ]; then
+    if [[ -n "${NTFY_TAGS}" ]]; then
         HEADERS+=(-H "X-Tags: ${NTFY_TAGS}")
     fi
 
@@ -67,16 +67,16 @@ NTFY_TITLE=
 NTFY_TOKEN=
 NTFY_URL=
 
-while :; do
-    case $1 in
+while [[ $# -gt 0 ]] ; do
+    case ${1} in
     -h | -\? | --help)
         usage
         exit 0
         ;;
 
     -l | --login-token)
-        if [ -z $2 ]; then die "ERROR: -l and --login-token require a non-empty option argument"; fi
-        NTFY_TOKEN=$2
+        if [[ -z ${2} ]]; then die "ERROR: -l and --login-token require a non-empty option argument"; fi
+        NTFY_TOKEN=${2}
         shift
         ;;
     -l=?* | --login-token=?*)
@@ -87,8 +87,8 @@ while :; do
         ;;
 
     -m | --message)
-        if [ -z $2 ]; then die "ERROR: -m and --message require a non-empty option argument"; fi
-        NTFY_MESSAGE=$2
+        if [[ -z ${2} ]]; then die "ERROR: -m and --message require a non-empty option argument"; fi
+        NTFY_MESSAGE=${2}
         shift
         ;;
     -m=?* | --message=?*)
@@ -99,8 +99,8 @@ while :; do
         ;;
 
     -p | --priority)
-        if [ -z $2 ]; then die "ERROR: -p and --priority require a non-empty option argument"; fi
-        NTFY_PRIORITY=$2
+        if [[ -z ${2} ]]; then die "ERROR: -p and --priority require a non-empty option argument"; fi
+        NTFY_PRIORITY=${2}
         shift
         ;;
     -p=?* | --priority=?*)
@@ -111,8 +111,8 @@ while :; do
         ;;
 
     -t | --title)
-        if [ -z $2 ]; then die "ERROR: -t and --title require a non-empty option argument"; fi
-        NTFY_TITLE=$2
+        if [[ -z ${2} ]]; then die "ERROR: -t and --title require a non-empty option argument"; fi
+        NTFY_TITLE=${2}
         shift
         ;;
     -t=?* | --title=?*)
@@ -123,8 +123,8 @@ while :; do
         ;;
 
     -T | --tags)
-        if [ -z $2 ]; then die "ERROR: -T and --tags require a non-empty option argument"; fi
-        NTFY_TAGS=$2
+        if [[ -z ${2} ]]; then die "ERROR: -T and --tags require a non-empty option argument"; fi
+        NTFY_TAGS=${2}
         shift
         ;;
     -T=?* | --tags=?*)
@@ -135,8 +135,8 @@ while :; do
         ;;
 
     -u | --url)
-        if [ -z $2 ]; then die "ERROR: -u and --url require a non-empty option argument"; fi
-        NTFY_URL=$2
+        if [[ -z ${2} ]]; then die "ERROR: -u and --url require a non-empty option argument"; fi
+        NTFY_URL=${2}
         shift
         ;;
     -u=?* | --url=?*)
@@ -151,7 +151,7 @@ while :; do
         break
         ;;
     -?*)
-        printf 'WARN: Unknown option (ignored): %s\n\n' "$1" >&2
+        printf 'WARN: Unknown option (ignored): %s\n\n' "${1}" >&2
         usage
         exit 1
         ;;
