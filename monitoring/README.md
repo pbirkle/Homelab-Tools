@@ -6,7 +6,7 @@
    2. [Temperature](#temperature)
 3. [Prometheus / Grafana](#prometheus--grafana)
 4. [Prometheus Exporters](#prometheus-exporters)
-   1. [Node Exporter](#node-exporter)
+   1. [Node Exporter](#node-exporter-service)
    2. [Pi-Hole Exporter](#pi-hole-exporter-service)
 
 ## Configure Mail
