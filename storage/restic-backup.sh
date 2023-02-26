@@ -115,7 +115,6 @@ function backup() {
 
 function forget() {
   restic --repo "${RESTIC_REPO}" --password-file "${RESTIC_PASSWORD_FILE}" forget --keep-hourly "${RESTIC_KEEP_HOURLY}" --keep-daily "${RESTIC_KEEP_DAILY}" --keep-monthly "${RESTIC_KEEP_MONTHLY}"
-  restic --repo "${RESTIC_REPO}" --password-file "${RESTIC_PASSWORD_FILE}" snapshots
 }
 
 RESTIC_KEEP_HOURLY=1
