@@ -86,7 +86,13 @@ function check() {
     exit 1
   fi
 
-  if restic --repo "${RESTIC_REPO}" --password-file "${RESTIC_PASSWORD_FILE}" init > /dev/null 2>&1; then
+  # fail if connection to restic repository cannot be established
+  if ! restic --repo "${RESTIC_REPO}" --password-file "${RESTIC_PASSWORD_FILE}" cat config >/dev/null; then
+    print_error "connection to restic repsitory cannot be established"
+    exit 1
+  fi
+
+  if restic --repo "${RESTIC_REPO}" --password-file "${RESTIC_PASSWORD_FILE}" init; then
     print_log "restic repository initialized"
   else
     print_log "restic repository already exists"
@@ -101,13 +107,14 @@ function backup() {
       print_log "backup of ${SOURCE} successful"
     else
       print_error "backup of ${SOURCE} failed"
+      exit 1
     fi
   done
   print_log ""
 }
 
 function forget() {
-  restic --repo "${RESTIC_REPO}" --password-file "${RESTIC_PASSWORD_FILE}" forget --keep-hourly "${RESTIC_KEEP_HOURLY}" --keep-daily "${RESTIC_KEEP_DAILY}" --keep-monthly "${RESTIC_KEEP_MONTHLY}" > /dev/null 2>&1
+  restic --repo "${RESTIC_REPO}" --password-file "${RESTIC_PASSWORD_FILE}" forget --keep-hourly "${RESTIC_KEEP_HOURLY}" --keep-daily "${RESTIC_KEEP_DAILY}" --keep-monthly "${RESTIC_KEEP_MONTHLY}"
   restic --repo "${RESTIC_REPO}" --password-file "${RESTIC_PASSWORD_FILE}" snapshots
 }
 
