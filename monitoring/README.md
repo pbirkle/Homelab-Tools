@@ -8,6 +8,7 @@
 4. [Prometheus Exporters](#prometheus-exporters)
    1. [Node Exporter](#node-exporter-service)
    2. [Pi-Hole Exporter](#pi-hole-exporter-service)
+   3. [cAdvisor](#cadvisor-docker-compose)
 
 ## Configure Mail
 for more information see [here](https://decatec.de/linux/linux-einfach-e-mails-versenden-mit-msmtp/)
@@ -147,3 +148,6 @@ sudo systemctl daemon-reload
 sudo systemctl enable pihole_exporter
 sudo systemctl start pihole_exporter
 ```
+
+### cAdvisor (Docker-Compose)
+use [docker-compose.yml](./prometheus-exporters/cadvisor/docker-compose.yml) file to setup cAdvisor
