@@ -92,7 +92,7 @@ function check() {
     exit 1
   fi
 
-  if restic --repo "${RESTIC_REPO}" --password-file "${RESTIC_PASSWORD_FILE}" init; then
+  if restic --repo "${RESTIC_REPO}" --password-file "${RESTIC_PASSWORD_FILE}" init >/dev/null 2>&1; then
     print_log "restic repository initialized"
   else
     print_log "restic repository already exists"
@@ -103,7 +103,7 @@ function backup() {
   for SOURCE in "${SOURCES[@]}"; do
     print_log ""
     print_log "start backup of ${SOURCE}"
-    if restic --repo "${RESTIC_REPO}" --password-file "${RESTIC_PASSWORD_FILE}" backup "${SOURCE}" > /dev/null 2>&1; then
+    if restic --repo "${RESTIC_REPO}" --password-file "${RESTIC_PASSWORD_FILE}" backup "${SOURCE}"; then
       print_log "backup of ${SOURCE} successful"
     else
       print_error "backup of ${SOURCE} failed"
