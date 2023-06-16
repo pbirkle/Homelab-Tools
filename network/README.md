@@ -2,6 +2,7 @@
 1. [SSH](#ssh)
    1. [Client](#client)
    2. [Server](#server)
+2. [DynDNS](#dyndns)
 
 ## SSH
 ### Client
@@ -42,4 +43,13 @@ PermitRootLogin no
 
 # restart sshd daemon
 systemctl restart ssh.service
+```
+
+## DynDNS
+[dynv6](https://dynv6.com) can be used to link both IPv4 and IPv6 ips for a hostname. After creating the specified zones/hostnames, the [dynv6.sh](./dynv6.sh) script can be used to update both the IPv4 and IPv6 ips. As the dynv6 api needs an access token, the script must be run once manually so it can be provided. All subsequent calls will use the previously provided api key as it is saved at the following location: ~/.dynv6/[HOSTNAME]/api_token
+
+The update can be automated by adding following to the crontab: (it will check and update every minute)
+
+```sh
+* * * * * ~/dynv6.sh your.domain.tld
 ```
