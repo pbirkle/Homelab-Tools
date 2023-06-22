@@ -68,4 +68,6 @@ restic-restore.sh \
 ```
 
 #### REST-Server
-Restic offers an [REST-Server](https://github.com/restic/rest-server) to back up your data to a remote server. As restic has performance issues while backing up files through a network share (e.g. samba) this REST-Server can be used to provide a fast remote backup destination.  
+Restic offers an [REST-Server](https://github.com/restic/rest-server) to back up your data to a remote server. As restic has performance issues while backing up files through a network share (e.g. samba) this REST-Server can be used to provide a fast remote backup destination.
+
+[docker-compose.yml](./restic-rest-server/docker-compose.yml) represents an example for the configuration of a restic rest server with activated prometheus metrics endpoint.
