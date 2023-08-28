@@ -25,7 +25,7 @@ prepare () {
 }
 
 update_ipv4 () {
-    IPv4=$(curl -fsS ifconfig.me/ip)
+    IPv4=$(curl -fsS4 icanhazip.com)
 
     if [ -z "${IPv4}" ]; then
         echo "IPv4 address not found, skipping..."
