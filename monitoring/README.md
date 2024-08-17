@@ -71,37 +71,7 @@ Easiest way to use Prometheus and Grafana is by using [docker-compose](./prometh
 ## Prometheus Exporters
 
 ### Node Exporter (Service)
-
-1. create new user
-```sh
-sudo useradd node_exporter -s /sbin/nologin
-```
-
-2. download node_exporter
-
-check for newest version on [prometheus website](https://prometheus.io/download/#node_exporter)
-```sh
-wget https://github.com/prometheus/node_exporter/releases/download/v1.5.0/node_exporter-1.5.0.linux-amd64.tar.gz
-```
-
-3. extract and move node_exporter
-```sh
-tar xvfz node_exporter-1.5.0.linux-amd64.tar.gz
-sudo cp node_exporter-1.5.0.linux-amd64/node_exporter /usr/bin
-```
-4. create new service
-```sh
-sudo nano /etc/systemd/system/node_exporter.service
-```
-
-add content from [node_exporter.service](./prometheus-exporters/node-exporter/node_exporter.service)
-
-5. activate and start service
-```sh
-sudo systemctl daemon-reload
-sudo systemctl enable node_exporter
-sudo systemctl start node_exporter
-```
+use [setup-node-exporter.sh](./prometheus-exporters/setup-node-exporter.sh) script for setup on Debian/Ubuntu
 
 ### Pi-Hole Exporter (Service)
 see [Pi-Hole Prometheus Exporter](https://github.com/eko/pihole-exporter) GitHub page for further information
