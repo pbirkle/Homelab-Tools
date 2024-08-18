@@ -2,6 +2,11 @@
 
 NODE_EXPORTER_VERSION="1.8.2"
 
+if [[ $(id -u) -gt 0 ]]; then
+  echo "script must be run as root"
+  exit 1
+fi
+
 # add dedicated user 
 useradd node_exporter -s /sbin/nologin
 
